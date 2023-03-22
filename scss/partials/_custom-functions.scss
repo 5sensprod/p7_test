@@ -1,0 +1,10 @@
+// Fonction Sass qui convertit une valeur en pixels en rem/
+
+$font-size-root: 16; // Définition de la taille de base de la police en pixels
+
+// Convertir les pixels en REM
+@function rem($px) {
+    @return calc($px / $font-size-root)+rem;
+}
+
+// Utilise cette syntaxe, ex : p {font-size: rem(16);}

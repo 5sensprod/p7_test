@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Découvrez des recettes savoureuses et faciles à préparer sur Les Petits Plats - le site de référence pour les amateurs de cuisine. Des plats traditionnels aux recettes exotiques, explorez notre collection de recettes délicieuses pour toutes les occasions.">
+    <title>Les petis plats</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="img/logo/logo.png">
+    <!-- Lien CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&family=DM+Sans:wght@400;500;700&display=swap">
+    <!-- Fichier CSS personnalisé -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Fichier JavaScript personnalisé -->
+    <script type="module" src="scripts/data-source/recipesFetcher.js" defer></script>
+    <script type="module" src="scripts/utilities/domUtils.js" defer></script>
+
+</head>
+
+<body>
+    <header class="header" role="banner">
+        <img class="header__logo" src="img/logo/logo.svg" alt="Logo Les Petits Plats" tabindex="0">
+        <h1 class="header__title">Les petits plats</h1>
+    </header>
+    <!-- page wrapper -->
+    <div class="bloc-page">
+        <!--  Recherche par recette -->
+        <form class="search-form search-form--recipes" action="#" method="GET">
+            <div class="input-group">
+                <input id="search-input" type="text" class="form-control" name="q" placeholder="Rechercher une recette"
+                    required>
+                <label for="search-input" class="search-label">
+                    <img src="img/icon-search.svg" alt="search icon" class="search-icon">
+                </label>
+            </div>
+        </form>
+        <!--  Critères sélectionnés -->
+        <div class="search-criteria">
+        </div>
+        <!--  Recherche par ingrédient, appareil, ustensile -->
+        <div class="dropdown-container">
+            <div class="dropdown">
+                <input type="button" class="dropdown__toggle dropdown__toggle--ingredients" value="Ingrédients">
+                <label for="sort-by-ingredients" class="dropdown__label">
+                    <i class="fas fa-chevron-down dropdown__icon"></i>
+                </label>
+                <ul id="sort-by-ingredients" class="dropdown__menu dropdown__menu--ingredients">
+                    <!-- Liste des ingrédients générée dynamiquement -->
+                </ul>
+            </div>
+            <div class="dropdown">
+                <input type="button" class="dropdown__toggle dropdown__toggle--appliances" value="Appareils">
+                <label for="sort-by-appliances" class="dropdown__label">
+                    <i class="fas fa-chevron-down dropdown__icon"></i>
+                </label>
+                <ul id="sort-by-appliances" class="dropdown__menu dropdown__menu--appliances">
+                    <!-- Liste des ingrédients générée dynamiquement -->
+                </ul>
+            </div>
+
+            <div class="dropdown">
+                <input type="button" class="dropdown__toggle dropdown__toggle--ustensils" value="Ustensiles">
+                <label for="sort-by-ustensils" class="dropdown__label">
+                    <i class="fas fa-chevron-down dropdown__icon"></i>
+                </label>
+                <ul id="sort-by-ustensils" class="dropdown__menu dropdown__menu--ustensils">
+                    <!-- Liste des ingrédients générée dynamiquement -->
+                </ul>
+            </div>
+        </div>
+        <!--  Liste des recettes -->
+        <div class="recipes-container">
+            <!-- Les recettes générées dynamiquement seront ajoutées ici -->
+        </div>
+    </div>
+</body>
+
+</html>

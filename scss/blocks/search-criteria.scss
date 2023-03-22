@@ -1,0 +1,41 @@
+.search-criteria {
+    display: flex;
+    flex-direction: column;
+    gap: rem(10);
+    margin-bottom: rem(20);
+    
+    &__list {
+        display: flex;
+        align-items: center;
+        gap: rem(10);
+        
+    }
+    &__item { 
+        display: flex;
+        align-items: center;
+        font-weight: 700;
+        font-size: rem(14);
+        border-radius: rem(5);
+        padding: rem(10) rem(20);
+        color: white;
+
+
+        &--ingredient {
+            background-color:   #3282F7;
+        }
+        &--appliance {
+            background-color:   #68D9A4;
+        }
+        &--ustensil {
+            background-color:   #ED6454;;
+        }
+
+    }
+
+    &__close-icon {
+        margin-left: rem(13);
+        font-size: rem(14);
+        color: $color-text-dark;
+        cursor: pointer;
+    }
+}

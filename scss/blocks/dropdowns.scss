@@ -1,0 +1,88 @@
+.dropdown {
+    position: relative;
+
+    &__toggle {
+        @include dropdown-base-style;
+        position: relative;
+        text-align: left;
+        padding-left: map-get($spacing, 'md');
+        border: none;
+        cursor: pointer;
+
+
+        // background-color: #D04F4F;
+        &--ingredients {
+            background-color: #3282F7;
+        }
+
+        &--appliances {
+            background-color: #68D9A4;
+        }
+
+        &--ustensils {
+            background-color: #ED6454;
+        }
+
+        &--active {
+            width: rem(667);
+            border-radius: rem(5) rem(5) 0 0;
+        }
+    }
+
+    &__label {
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%)
+    }
+
+    &__icon {
+        
+        color: white;
+        font-size: rem(17);
+        ;
+    }
+
+    &__menu {
+        display: none;
+
+        &--active {
+            position: absolute;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            width: rem(667);
+            gap: rem(10);
+            font-size: rem(18);
+            color: white;
+            padding: map-get($spacing, 'md');
+            border-radius: 0 0 rem(5) rem(5);
+        }
+
+        &--ingredients {
+            background-color: #3282F7;
+        }
+
+        &--appliances {
+            background-color: #68D9A4;
+        }
+
+        &--ustensils {
+            background-color: #ED6454;
+        }
+
+    }
+    &__menu-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: map-get($spacing, 'sm');
+        border-radius: rem(5);
+        cursor: pointer;
+        transition: background-color 0.3s ease-in-out;
+
+        &:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+    }
+
+}

@@ -1,0 +1,31 @@
+@import 'custom-functions'; // Cette fonction convertit le pixel en rem
+
+// Variables de couleur
+$color-bg-light: #E7E7E7;
+$color-text-dark: #000000;
+
+// Variables de typographie
+$font-family-base: 'Lato', sans-serif;
+$h1-font-family: 'DM Sans', sans-serif;
+$h2-font-family: 'Lato', sans-serif;
+$h1-font-size: rem(36);
+$h1-line-height: rem(47);
+$h1-color: #D04F4F;
+$h2-font-size: rem(18);
+$h2-line-height: rem(22);
+$h2-color: $color-text-dark;
+$body-font-size: rem(12);
+$body-color: $color-text-dark;
+
+
+
+// Variables d'espacement
+$spacing: (
+    'xs': rem(5),
+    'sm': rem(10),
+    'md': rem(20),
+    'lg': rem(30),
+    'xl': rem(40),
+    'xxl': rem(50),
+    'xxxl': rem(80)
+);
