@@ -65,3 +65,9 @@ export function displayInSearchCriteria(text, listType) {
   // Met à jour l'affichage des recettes après avoir ajouté un critère
   updateRecipeDisplay();
 }
+
+export function attachClickListenerToDropdownItem(listItem, listType) {
+  listItem.addEventListener("click", () => {
+    displayInSearchCriteria(listItem.textContent, listType);
+  });
+}

@@ -1,27 +1,40 @@
-import { addUniqueListItem, normalizeString } from '../utilities/utils.js';
-import { getRecipeData } from '../data-source/sharedData.js';
+// import { normalizeString } from '../utils/stringUtils.js';
+// import { getRecipeData } from '../data-source/sharedData.js';
+import { addUniqueListItem } from "../utilities/utils.js";
 
-export function updateAvailableCriteria() {
-    const displayedRecipes = document.querySelectorAll('.recipe-card:not([style*="display:none"])');
-    const ingredientsList = document.getElementById("sort-by-ingredients");
-    const appliancesList = document.getElementById("sort-by-appliances");
-    const ustensilsList = document.getElementById("sort-by-ustensils");
-  
-    // Remplir les listes avec les éléments des recettes affichées
-    displayedRecipes.forEach(recipe => {
-      const recipeData = getRecipeData().find(data => data.id === parseInt(recipe.dataset.id));
-  
-      recipeData.ingredients.forEach(ingredient => {
-        const text = normalizeString(ingredient.ingredient);
+function clearDropdownList(dropdownList) {
+  const listItems = dropdownList.querySelectorAll('li:not(.dropdown__item--default)');
+
+  listItems.forEach(item => {
+    item.remove();
+  });
+}
+
+export function updateAvailableCriteria(filteredRecipes) {
+  const ingredientsList = document.getElementById("sort-by-ingredients");
+  const appliancesList = document.getElementById("sort-by-appliances");
+  const ustensilsList = document.getElementById("sort-by-ustensils");
+
+  // Nettoyer les listes déroulantes existantes
+  clearDropdownList(ingredientsList);
+  clearDropdownList(appliancesList);
+  clearDropdownList(ustensilsList);
+
+  // Remplir les listes avec les éléments des recettes affichées
+  filteredRecipes.forEach(recipe => {
+    if (recipe) {
+      recipe.ingredients.forEach(ingredient => {
+        const text = ingredient.ingredient;
         addUniqueListItem(ingredientsList, text, 'ingredient');
       });
-  
-      const appliance = recipeData.appliance;
+
+      const appliance = recipe.appliance;
       addUniqueListItem(appliancesList, appliance, 'appliance');
-  
-      recipeData.ustensils.forEach(ustensil => {
-        const text = normalizeString(ustensil);
+
+      recipe.ustensils.forEach(ustensil => {
+        const text = ustensil;
         addUniqueListItem(ustensilsList, text, 'ustensil');
       });
-    });
-  }
+    }
+  });
+}
