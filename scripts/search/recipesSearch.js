@@ -1,6 +1,6 @@
 import { normalizeString } from '../utils/stringUtils.js';
 import { getRecipeData } from '../data-source/sharedData.js';
-import { updateDropdownLists } from '../ui/updateDisplay.js';
+import { updateDropdownLists } from '../handlers/dropdownUpdates.js';
 import { updateAvailableCriteria } from '../handlers/updateCriteria.js';
 
 export function updateRecipeDisplay(filterDropdowns = false) {

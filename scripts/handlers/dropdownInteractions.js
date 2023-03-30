@@ -1,4 +1,4 @@
-import { filterDropdownItems } from '../utils/dropdownUtils.js';
+import { filterDropdownItems } from '../utils/dropdownListUtils.js';
 
 // Fonction qui change le type de l'input entre 'text' et 'button' et met à jour son label et placeholder
 function toggleInput(input, label) {

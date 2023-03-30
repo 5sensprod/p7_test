@@ -1,4 +1,4 @@
-import { normalizeString, singularize, compareStrings, capitalizeFirstWord } from '../utils/stringUtils.js';
+import { normalizeString, singularize, compareStrings, capitalizeFirstWord } from './stringUtils.js';
 import { attachClickListenerToDropdownItem } from "../handlers/displayCriteria.js";
 
 export function addUniqueListItem(list, item, type) {
