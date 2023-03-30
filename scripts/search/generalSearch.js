@@ -4,30 +4,42 @@ export function searchRecipes() {
   const recipes = document.querySelectorAll('.recipe-card');
   const searchInput = document.getElementById('search-input');
 
+  // Utilisation d'un écouteur d'événements pour réagir aux changements de la recherche
   searchInput.addEventListener('input', () => {
-    const query = normalizeString(searchInput.value.trim()); // Normaliser la chaîne de caractères de recherche
+    const query = normalizeString(searchInput.value.trim());
 
     if (query.length >= 3) {
-      // console.log(`Recherche lancée pour "${query}"`);
-      recipes.forEach(recipe => {
+      // Utilisation de la méthode 'filter' pour filtrer les recettes en fonction de la recherche
+      // Cette méthode fonctionnelle ne modifie pas le tableau d'origine et renvoie un nouveau tableau
+      const filteredRecipes = Array.from(recipes).filter(recipe => {
         const title = normalizeString(recipe.querySelector('.recipe-card__title').textContent);
         const ingredients = normalizeString(recipe.querySelector('.recipe-card__ingredients').textContent);
         const description = normalizeString(recipe.querySelector('.recipe-card__description').textContent);
 
-        const isMatch = title.includes(query) || ingredients.includes(query) || description.includes(query);
+        return title.includes(query) || ingredients.includes(query) || description.includes(query);
+      });
 
-        if (isMatch) {
-          recipe.style.display = ''; // Affiche la recette si elle correspond à la recherche
-          console.log(`"${title}" correspond à la recherche`);
-        } else {
-          recipe.style.display = 'none'; // Masque la recette si elle ne correspond pas à la recherche
-        }
-      });
+      // Mise à jour de l'affichage des recettes avec les recettes filtrées
+      updateRecipeDisplay(filteredRecipes);
     } else {
-      // Affiche toutes les recettes si la recherche est vide ou trop courte
-      recipes.forEach(recipe => {
-        recipe.style.display = '';
-      });
+      // Si la recherche est vide ou trop courte, affiche toutes les recettes
+      updateRecipeDisplay(recipes);
     }
+  });
+}
+
+function updateRecipeDisplay(recipesToShow) {
+  const allRecipes = document.querySelectorAll('.recipe-card');
+
+  // Utilisation de la méthode 'forEach' pour parcourir toutes les recettes et les masquer
+  // Cette méthode fonctionnelle permet de traiter chaque élément du tableau sans utiliser de boucles traditionnelles
+  allRecipes.forEach(recipe => {
+    recipe.style.display = 'none';
+  });
+
+  // Utilisation de la méthode 'forEach' pour parcourir les recettes à afficher et les rendre visibles
+  // Cette approche fonctionnelle garantit que les données d'origine ne sont pas modifiées
+  recipesToShow.forEach(recipe => {
+    recipe.style.display = '';
   });
 }
