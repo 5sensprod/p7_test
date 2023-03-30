@@ -1,6 +1,6 @@
 import { displayInSearchCriteria } from "../search/criteriaSearchUI.js";
 
-export function addEventListeners() {
+export function addDropdownItemClickListeners() {
   const ingredientsList = document.getElementById("sort-by-ingredients");
   const appliancesList = document.getElementById("sort-by-appliances");
   const ustensilsList = document.getElementById("sort-by-ustensils");
