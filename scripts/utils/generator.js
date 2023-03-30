@@ -1,6 +1,6 @@
 import { createRecipeCard } from "../factories/recipeCardFactory.js";
 
-import { addUniqueListItem } from "../utilities/utils.js";
+import { addUniqueListItem } from "./dropdownUtils.js";
 import { updateRecipeDisplay } from "../search/recipesSearch.js";
 
 

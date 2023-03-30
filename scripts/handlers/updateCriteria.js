@@ -1,4 +1,4 @@
-import { addUniqueListItem } from "../utilities/utils.js";
+import { addUniqueListItem } from "../utils/dropdownUtils.js";
 
 function clearDropdownList(dropdownList) {
   const listItems = dropdownList.querySelectorAll('li:not(.dropdown__item--default)');
