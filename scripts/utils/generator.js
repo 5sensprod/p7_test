@@ -1,7 +1,7 @@
 import { createRecipeCard } from "../factories/recipeCardFactory.js";
 
 import { addUniqueListItem } from "./dropdownListUtils.js";
-import { updateRecipeDisplay } from "../search/recipesSearch.js";
+import { updateRecipeDisplay } from "../search/criteriaSearch.js";
 
 
 export function generateRecipeCards(data) {
