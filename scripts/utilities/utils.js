@@ -12,23 +12,22 @@ export function addUniqueListItem(list, item, type) {
   const searchCriteria = document.querySelector('.search-criteria');
   const existingCriteria = searchCriteria.querySelectorAll('.search-criteria__item');
   const existingContainer = Array.from(existingCriteria).find(
-      (criteriaItem) => criteriaItem.textContent === item && criteriaItem.parentElement.classList.contains(`search-criteria__container--${type}`)
+    (criteriaItem) => criteriaItem.textContent === item && criteriaItem.parentElement.classList.contains(`search-criteria__container--${type}`)
   );
 
   if (!existingItem && !existingContainer) {
-      // Si l'élément n'existe pas encore, créez un nouvel élément de liste et ajoutez-le à la liste
-      const listItem = document.createElement('li');
-      listItem.classList.add('dropdown__menu-item');
-      listItem.classList.add(`dropdown__menu-item--${type}`);
-      listItem.textContent = capitalizeFirstWord(item);// Utiliser l'élément original pour l'affichage du texte
-      listItem.setAttribute('data-name', normalizedItem); // Ajouter l'élément normalisé au singulier à l'attribut 'data-name'
-      listItem.setAttribute('data-original-name', item); // Ajouter l'élément non normalisé à l'attribut 'data-original-name'
-      list.appendChild(listItem);
-      // Attacher un gestionnaire d'événements de clic à l'élément nouvellement ajouté
-attachClickListenerToDropdownItem(listItem, type);
+    // Si l'élément n'existe pas encore, créez un nouvel élément de liste et ajoutez-le à la liste
+    const listItem = document.createElement('li');
+    listItem.classList.add('dropdown__menu-item');
+    listItem.classList.add(`dropdown__menu-item--${type}`);
+    listItem.textContent = capitalizeFirstWord(item);// Utiliser l'élément original pour l'affichage du texte
+    listItem.setAttribute('data-name', normalizedItem); // Ajouter l'élément normalisé au singulier à l'attribut 'data-name'
+    listItem.setAttribute('data-original-name', item); // Ajouter l'élément non normalisé à l'attribut 'data-original-name'
+    list.appendChild(listItem);
+    // Attacher un gestionnaire d'événements de clic à l'élément nouvellement ajouté
+    attachClickListenerToDropdownItem(listItem, type);
   }
 }
-
 
 export function filterDropdownItems(inputElement, listElement) {
   inputElement.addEventListener('input', () => {

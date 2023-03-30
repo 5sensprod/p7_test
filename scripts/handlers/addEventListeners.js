@@ -11,13 +11,13 @@ export function addEventListeners() {
       displayInSearchCriteria(listItem.getAttribute('data-original-name'), 'ingredient');
     });
   });
-  
+
   ustensilsList.querySelectorAll(".dropdown__menu-item").forEach(listItem => {
     listItem.addEventListener('click', () => {
       displayInSearchCriteria(listItem.getAttribute('data-original-name'), 'ustensil');
     });
   });
-  
+
   appliancesList.querySelectorAll(".dropdown__menu-item").forEach(listItem => {
     listItem.addEventListener('click', () => {
       displayInSearchCriteria(listItem.getAttribute('data-original-name'), 'appliance');

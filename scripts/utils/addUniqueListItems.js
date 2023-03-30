@@ -1,5 +1,6 @@
 import { addUniqueListItem } from "../utilities/utils.js";
 import { updateRecipeDisplay } from "../search/recipesSearch.js";
+
 export function addUniqueListItems(data) {
     const ingredientsList = document.getElementById("sort-by-ingredients");
     const appliancesList = document.getElementById("sort-by-appliances");
@@ -18,6 +19,6 @@ export function addUniqueListItems(data) {
         addUniqueListItem(appliancesList, recipe.originalData.appliance, 'appliance');
     });
 
- // Appeler updateRecipeDisplay une fois que les listes sont remplies
-updateRecipeDisplay(false);
+    // Appeler updateRecipeDisplay une fois que les listes sont remplies
+    updateRecipeDisplay(false);
 }

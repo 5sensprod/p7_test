@@ -14,8 +14,8 @@ export function updateRecipeDisplay(filterDropdowns = false) {
 
     searchCriteria.forEach(criteria => {
       const listType = criteria.classList.contains('search-criteria__item--ingredient') ? 'ingredient'
-                      : criteria.classList.contains('search-criteria__item--appliance') ? 'appliance'
-                      : 'ustensil';
+        : criteria.classList.contains('search-criteria__item--appliance') ? 'appliance'
+          : 'ustensil';
 
       const text = criteria.textContent.trim();
       const normalizedText = normalizeString(text);

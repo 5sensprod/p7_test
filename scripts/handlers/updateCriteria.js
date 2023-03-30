@@ -1,5 +1,3 @@
-// import { normalizeString } from '../utils/stringUtils.js';
-// import { getRecipeData } from '../data-source/sharedData.js';
 import { addUniqueListItem } from "../utilities/utils.js";
 
 function clearDropdownList(dropdownList) {

@@ -8,13 +8,13 @@ import { addUniqueListItems } from "./utils/addUniqueListItems.js";
 async function initialize() {
     await fetchData();
     const data = getRecipeData();
-  
+
     createRecipeElements(data);
     addUniqueListItems(data);
     addEventListeners();
-  
+
     searchRecipes();
     updateRecipeDisplay();
-  }
-  
-  initialize();
+}
+
+initialize();
