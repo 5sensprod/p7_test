@@ -3,6 +3,7 @@ import { normalizeString } from '../utils/stringUtils.js';
 let recipeData = [];
 
 export function setRecipeData(data) {
+    
     recipeData = data.map(recipe => {
         // console.log(recipe);
         // Normaliser les noms des ingrédients, ustensiles et appareils
@@ -31,7 +32,7 @@ export function getRecipeData() {
 //   return Array.from(new Set(arr)).sort();
 // }
 
-// export function printRecipeData() {
+export function printRecipeData() {
 //   let ingredients = [];
 //   let appliances = [];
 //   let ustensils = [];
@@ -53,4 +54,4 @@ export function getRecipeData() {
 //   uniqueAppliances.forEach(appliance => console.log(appliance));
 //   console.log('\nUstensiles:');
 //   uniqueustensils.forEach(ustensil => console.log(ustensil));
-// }
+ console.log(recipeData);}
