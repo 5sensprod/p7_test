@@ -1,45 +1,43 @@
 import { normalizeString } from '../utils/stringUtils.js';
 
+// Fonction principale de recherche de recettes
 export function searchRecipes() {
+  // Sélectionne toutes les cartes de recettes
   const recipes = document.querySelectorAll('.recipe-card');
+  // Sélectionne le champ de saisie de la recherche
   const searchInput = document.getElementById('search-input');
 
-  // Utilisation d'un écouteur d'événements pour réagir aux changements de la recherche
+  // Ajoute un écouteur d'événement pour détecter les modifications de saisie de recherche
   searchInput.addEventListener('input', () => {
+    // Normalise la chaîne de caractères de recherche
     const query = normalizeString(searchInput.value.trim());
 
+    // Vérifie si la chaîne de recherche est suffisamment longue (au moins 3 caractères)
     if (query.length >= 3) {
-      // Utilisation de la méthode 'filter' pour filtrer les recettes en fonction de la recherche
-      // Cette méthode fonctionnelle ne modifie pas le tableau d'origine et renvoie un nouveau tableau
-      const filteredRecipes = Array.from(recipes).filter(recipe => {
+      // Utilise une boucle native "for" pour parcourir toutes les recettes
+      for (let i = 0; i < recipes.length; i++) {
+        const recipe = recipes[i];
         const title = normalizeString(recipe.querySelector('.recipe-card__title').textContent);
         const ingredients = normalizeString(recipe.querySelector('.recipe-card__ingredients').textContent);
         const description = normalizeString(recipe.querySelector('.recipe-card__description').textContent);
 
-        return title.includes(query) || ingredients.includes(query) || description.includes(query);
-      });
+        // Vérifie si la recette correspond aux critères de recherche
+        const isMatch = title.includes(query) || ingredients.includes(query) || description.includes(query);
 
-      // Mise à jour de l'affichage des recettes avec les recettes filtrées
-      updateRecipeDisplay(filteredRecipes);
+        // Met à jour l'affichage de la recette en fonction de la correspondance
+        if (isMatch) {
+          recipe.style.display = '';
+        } else {
+          recipe.style.display = 'none';
+        }
+      }
     } else {
       // Si la recherche est vide ou trop courte, affiche toutes les recettes
-      updateRecipeDisplay(recipes);
+      // Utilise une boucle native "for" pour parcourir toutes les recettes
+      for (let i = 0; i < recipes.length; i++) {
+        const recipe = recipes[i];
+        recipe.style.display = '';
+      }
     }
-  });
-}
-
-function updateRecipeDisplay(recipesToShow) {
-  const allRecipes = document.querySelectorAll('.recipe-card');
-
-  // Utilisation de la méthode 'forEach' pour parcourir toutes les recettes et les masquer
-  // Cette méthode fonctionnelle permet de traiter chaque élément du tableau sans utiliser de boucles traditionnelles
-  allRecipes.forEach(recipe => {
-    recipe.style.display = 'none';
-  });
-
-  // Utilisation de la méthode 'forEach' pour parcourir les recettes à afficher et les rendre visibles
-  // Cette approche fonctionnelle garantit que les données d'origine ne sont pas modifiées
-  recipesToShow.forEach(recipe => {
-    recipe.style.display = '';
   });
 }
