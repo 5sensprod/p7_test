@@ -1,7 +1,19 @@
+import { createRecipeCard } from "../factories/recipeCardFactory.js";
+
 import { addUniqueListItem } from "../utilities/utils.js";
 import { updateRecipeDisplay } from "../search/recipesSearch.js";
 
-export function addUniqueListItems(data) {
+
+export function generateRecipeCards(data) {
+    const recipesContainer = document.querySelector('.recipes-container');
+    data.forEach(recipe => {
+        // Création des cartes de recettes
+        const recipeCard = createRecipeCard(recipe);
+        recipesContainer.appendChild(recipeCard);
+    });
+}
+
+export function generateListDropdowns(data) {
     const ingredientsList = document.getElementById("sort-by-ingredients");
     const appliancesList = document.getElementById("sort-by-appliances");
     const ustensilsList = document.getElementById("sort-by-ustensils");
