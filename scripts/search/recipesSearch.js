@@ -41,11 +41,11 @@ export function updateRecipeDisplay(filterDropdowns = false) {
     recipe.style.display = shouldDisplay ? '' : 'none';
     if (shouldDisplay) {
       filteredRecipes.push(recipeData[index]);
-      const recipeTitle = recipe.querySelector('.recipe-card__title').textContent;
-      const recipeIngredients = recipeData[index].ingredients.map(ingredient => ingredient.ingredient);
-      const recipeAppliance = recipeData[index].appliance;
-      const recipeustensils = recipeData[index].ustensils;
-      console.log(`"${recipeTitle}" - Ingrédients: ${recipeIngredients.join(', ')} - Appareil: ${recipeAppliance} - Ustensiles: ${recipeustensils.join(', ')}`);
+      // const recipeTitle = recipe.querySelector('.recipe-card__title').textContent;
+      // const recipeIngredients = recipeData[index].ingredients.map(ingredient => ingredient.ingredient);
+      // const recipeAppliance = recipeData[index].appliance;
+      // const recipeustensils = recipeData[index].ustensils;
+      // console.log(`"${recipeTitle}" - Ingrédients: ${recipeIngredients.join(', ')} - Appareil: ${recipeAppliance} - Ustensiles: ${recipeustensils.join(', ')}`);
     }
   });
 
@@ -74,7 +74,7 @@ export function searchRecipes() {
     const query = normalizeString(searchInput.value.trim()); // Normaliser la chaîne de caractères de recherche
 
     if (query.length >= 3) {
-      console.log(`Recherche lancée pour "${query}"`);
+      // console.log(`Recherche lancée pour "${query}"`);
       recipes.forEach(recipe => {
         const title = normalizeString(recipe.querySelector('.recipe-card__title').textContent);
         const ingredients = normalizeString(recipe.querySelector('.recipe-card__ingredients').textContent);

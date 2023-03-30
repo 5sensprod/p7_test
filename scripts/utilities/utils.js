@@ -1,4 +1,4 @@
-import { normalizeString, singularize, capitalizeFirstWord } from '../utils/stringUtils.js';
+import { normalizeString, singularize, compareStrings, capitalizeFirstWord } from '../utils/stringUtils.js';
 import { attachClickListenerToDropdownItem } from "../handlers/displayCriteria.js";
 
 export function addUniqueListItem(list, item, type) {
@@ -36,13 +36,6 @@ export function filterDropdownItems(inputElement, listElement) {
     items.forEach(item => {
       const itemName = item.getAttribute('data-name').toLowerCase();
       const originalItemName = item.getAttribute('data-original-name').toLowerCase();
-
-      // Fonction pour comparer les chaînes de caractères avec et sans accents
-      const compareStrings = (str1, str2) => {
-        const normalizedStr1 = str1.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-        const normalizedStr2 = str2.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-        return normalizedStr1.includes(normalizedStr2);
-      };
 
       if (compareStrings(itemName, filter) || compareStrings(originalItemName, filter)) {
         item.style.display = '';

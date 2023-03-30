@@ -22,6 +22,12 @@ export function normalizeString(str) {
   return normalizedStr;
 }
 
+export const compareStrings = (str1, str2) => {
+  const normalizedStr1 = str1.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+  const normalizedStr2 = str2.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+  return normalizedStr1.includes(normalizedStr2);
+};
+
 export function singularize(word) {
   if (word.endsWith('s')) {
     return word.slice(0, -1);
