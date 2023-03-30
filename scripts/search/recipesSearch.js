@@ -40,11 +40,6 @@ export function updateRecipeDisplay(filterDropdowns = false) {
     recipe.style.display = shouldDisplay ? '' : 'none';
     if (shouldDisplay) {
       filteredRecipes.push(recipeData[index]);
-      // const recipeTitle = recipe.querySelector('.recipe-card__title').textContent;
-      // const recipeIngredients = recipeData[index].ingredients.map(ingredient => ingredient.ingredient);
-      // const recipeAppliance = recipeData[index].appliance;
-      // const recipeustensils = recipeData[index].ustensils;
-      // console.log(`"${recipeTitle}" - Ingrédients: ${recipeIngredients.join(', ')} - Appareil: ${recipeAppliance} - Ustensiles: ${recipeustensils.join(', ')}`);
     }
   });
 
@@ -54,7 +49,7 @@ export function updateRecipeDisplay(filterDropdowns = false) {
     updateDropdownLists(filteredRecipes);
   }
 
-  // Ajoutez cette ligne à la fin de la fonction updateRecipeDisplay
+  // Appeler updateAvailableCriteria avec le tableau filteredRecipes
   updateAvailableCriteria(filteredRecipes.map(recipe => {
     return {
       id: parseInt(recipe.id),
