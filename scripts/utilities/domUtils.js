@@ -1,77 +1,77 @@
 import { filterDropdownItems } from './utils.js';
 
-const dropdownToggles = document.querySelectorAll('.dropdown__toggle');
+const dropdownToggles = [
+  document.getElementById('toggle-sort-by-ingredients'),
+  document.getElementById('toggle-sort-by-appliances'),
+  document.getElementById('toggle-sort-by-ustensils'),
+];
 
-dropdownToggles.forEach((toggle) => {
-  const initialText = toggle.value; // Conserver le texte initial
+function handleFocus(toggle) {
+  toggle.value = '';
+  toggle.classList.add('dropdown__toggle--active');
+}
 
-  // Supprime le texte lors de la mise au point de l'input
-  toggle.addEventListener('focus', () => {
-    toggle.value = '';
-    toggle.classList.add('dropdown__toggle--active'); // Ajoute la classe dropdown__toggle--active
-  });
+function handleBlur(toggle, initialText) {
+  if (toggle.value === '') {
+    toggle.value = initialText;
+  }
+  toggle.classList.remove('dropdown__toggle--active');
+}
 
-  // Rétablit le texte initial si l'utilisateur n'a rien saisi
-  toggle.addEventListener('blur', () => {
-    if (toggle.value === '') {
-      toggle.value = initialText;
-    }
-    toggle.classList.remove('dropdown__toggle--active'); // Supprime la classe dropdown__toggle--active
-  });
+function handleClick(event, toggle, initialText, dropdownToggles) {
+  event.stopPropagation();
+  
+  resetOtherDropdownToggles(toggle, dropdownToggles);
+  
+  toggle.type = 'text';
+  toggle.placeholder = `Rechercher par ${initialText}`;
+  
+  const dropdownMenu = toggle.closest('.dropdown').querySelector('.dropdown__menu');
+  if (dropdownMenu) {
+    dropdownMenu.classList.add('dropdown__menu--active');
+  }
+}
 
-  // Ajoute un gestionnaire d'événements de clic au bouton dropdown
-  toggle.addEventListener('click', (event) => {
-    event.stopPropagation(); // Empêche la propagation de l'événement
+function resetOtherDropdownToggles(toggle, dropdownToggles) {
+  dropdownToggles.forEach((otherToggle) => {
+    if (otherToggle !== toggle) {
+      otherToggle.type = 'button';
+      otherToggle.placeholder = '';
 
-    // Réinitialiser le type et le placeholder des autres boutons dropdown
-    dropdownToggles.forEach((otherToggle) => {
-      if (otherToggle !== toggle) {
-        otherToggle.type = 'button';
-        otherToggle.placeholder = ''; // Supprime le placeholder
-
-        // Trouve l'élément ul parent et enlève la classe dropdown__menu--active
-        const otherDropdownMenu = otherToggle.closest('.dropdown').querySelector('.dropdown__menu');
-        if (otherDropdownMenu) {
-          otherDropdownMenu.classList.remove('dropdown__menu--active');
-        }
-
-        otherToggle.classList.remove('dropdown__toggle--active'); // Supprime la classe dropdown__toggle--active
+      const otherDropdownMenu = otherToggle.closest('.dropdown').querySelector('.dropdown__menu');
+      if (otherDropdownMenu) {
+        otherDropdownMenu.classList.remove('dropdown__menu--active');
       }
-    });
 
-    // Définit le type du bouton cliqué sur 'text' et ajoute le placeholder
-    toggle.type = 'text';
-    toggle.placeholder = `Rechercher par ${initialText}`; // Ajoute le placeholder
+      otherToggle.classList.remove('dropdown__toggle--active');
+    }
+  });
+}
 
-    // Trouve l'élément ul parent et ajoute la classe dropdown__menu--active
+function handleDocumentClick(dropdownToggles) {
+  dropdownToggles.forEach((toggle) => {
+    toggle.type = 'button';
+    toggle.placeholder = '';
+
     const dropdownMenu = toggle.closest('.dropdown').querySelector('.dropdown__menu');
     if (dropdownMenu) {
-      dropdownMenu.classList.add('dropdown__menu--active');
+      dropdownMenu.classList.remove('dropdown__menu--active');
     }
 
-    toggle.classList.add('dropdown__toggle--active'); // Ajoute la classe dropdown__toggle--active
+    toggle.classList.remove('dropdown__toggle--active');
   });
+}
 
-  // Ajoute un gestionnaire d'événements 'input' pour filtrer les éléments de la liste en fonction de la saisie de l'utilisateur
+dropdownToggles.forEach((toggle) => {
+  const initialText = toggle.value;
+
+  toggle.addEventListener('focus', () => handleFocus(toggle));
+  toggle.addEventListener('blur', () => handleBlur(toggle, initialText));
+  toggle.addEventListener('click', (event) => handleClick(event, toggle, initialText, dropdownToggles));
   toggle.addEventListener('input', () => {
     const dropdownMenu = toggle.closest('.dropdown').querySelector('.dropdown__menu');
     filterDropdownItems(toggle, dropdownMenu);
   });
 });
 
-// Ajoute un gestionnaire d'événements de clic au document pour réinitialiser tous les boutons dropdown
-document.addEventListener('click', () => {
-  dropdownToggles.forEach((toggle) => {
-    toggle.type = 'button';
-    toggle.placeholder = ''; // Supprime le placeholder
-
-    // Trouve l'élément ul parent et enlève la classe dropdown__menu--active
-    const dropdownMenu = toggle.closest('.dropdown').querySelector('.dropdown__menu');
-    if (dropdownMenu) {
-      dropdownMenu.classList.remove('dropdown__menu--active');
-    }
-
-    toggle.classList.remove('dropdown__toggle--active'); // Supprime la classe dropdown__toggle--active
-
-  });
-});
+document.addEventListener('click', () => handleDocumentClick(dropdownToggles));
