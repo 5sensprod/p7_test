@@ -4,6 +4,7 @@ import { createRecipeElements } from './utils/createRecipeElements.js';
 import { addEventListeners } from './handlers/addEventListeners.js';
 import { searchRecipes, updateRecipeDisplay } from "./search/recipesSearch.js";
 import { addUniqueListItems } from "./utils/addUniqueListItems.js";
+import { addDropdownEvents } from "./utilities/domUtils.js";
 
 async function initialize() {
     await fetchData();
@@ -15,6 +16,7 @@ async function initialize() {
 
     searchRecipes();
     updateRecipeDisplay();
+    addDropdownEvents();
 
 }
 
