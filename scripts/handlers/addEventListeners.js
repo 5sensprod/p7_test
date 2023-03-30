@@ -1,4 +1,4 @@
-import { displayInSearchCriteria } from "./displayCriteria.js";
+import { displayInSearchCriteria } from "../search/criteriaSearch.js";
 
 export function addEventListeners() {
   const ingredientsList = document.getElementById("sort-by-ingredients");

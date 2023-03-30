@@ -1,4 +1,4 @@
-import { updateRecipeDisplay } from '../search/recipesSearch.js';
+import { updateRecipeDisplay } from './recipesSearch.js';
 
 function createSearchCriteriaList(listType) {
   const searchCriteriaDiv = document.querySelector('.search-criteria');

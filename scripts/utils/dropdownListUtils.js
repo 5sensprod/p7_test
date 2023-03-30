@@ -1,5 +1,5 @@
 import { normalizeString, singularize, compareStrings, capitalizeFirstWord } from './stringUtils.js';
-import { attachClickListenerToDropdownItem } from "../handlers/displayCriteria.js";
+import { attachClickListenerToDropdownItem } from "../search/criteriaSearch.js";
 
 export function addUniqueListItem(list, item, type) {
   // Normaliser l'élément et le mettre au singulier
