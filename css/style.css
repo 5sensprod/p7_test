@@ -169,7 +169,6 @@ body {
   gap: 1.25rem;
   margin-bottom: 5rem;
   justify-content: flex-start;
-  flex-wrap: wrap;
 }
 
 .dropdown {
