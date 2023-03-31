@@ -2,15 +2,18 @@ import { normalizeString } from '../utils/stringUtils.js';
 import { updateDropdownLists } from '../handlers/dropdownUpdates.js';
 import { getRecipeDataById } from '../data-source/sharedData.js';
 
+// La fonction searchRecipes utilise une approche basée sur les boucles natives pour traiter les recettes
 export function searchRecipes() {
   const recipes = document.querySelectorAll('.recipe-card');
   const searchInput = document.getElementById('search-input');
 
   searchInput.addEventListener('input', () => {
     const query = normalizeString(searchInput.value.trim());
-    const filteredRecipesData = [];
 
     if (query.length >= 3) {
+      const filteredRecipesData = [];
+
+      // Utilisation d'une boucle native 'for' pour parcourir et filtrer les recettes
       for (let i = 0; i < recipes.length; i++) {
         const recipe = recipes[i];
         const title = normalizeString(recipe.querySelector('.recipe-card__title').textContent);
@@ -29,18 +32,26 @@ export function searchRecipes() {
         }
       }
 
-      // Mettre à jour les listes déroulantes en fonction des recettes filtrées
       updateDropdownLists(filteredRecipesData);
 
     } else {
+      // Utilisation d'une boucle native 'for' pour réinitialiser l'affichage des recettes
       for (let i = 0; i < recipes.length; i++) {
         const recipe = recipes[i];
         recipe.style.display = '';
       }
 
-  // Réinitialiser les listes des dropdowns avec les données de recettes d'origine
-  const allRecipeData = Array.from(recipes).map(recipe => getRecipeDataById(parseInt(recipe.getAttribute('data-recipe-id'))));
-  updateDropdownLists(allRecipeData);
+      const allRecipeData = [];
+
+      // Utilisation d'une boucle native 'for' pour récupérer les données de toutes les recettes
+      for (let i = 0; i < recipes.length; i++) {
+        const recipe = recipes[i];
+        const recipeId = parseInt(recipe.getAttribute('data-recipe-id'));
+        const recipeData = getRecipeDataById(recipeId);
+        allRecipeData.push(recipeData);
+      }
+
+      updateDropdownLists(allRecipeData);
     }
   });
 }
